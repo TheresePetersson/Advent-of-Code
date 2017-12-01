@@ -16,6 +16,7 @@
 f = open('input.txt','r')
 digits = f.read().strip()
 
+# Task 1
 previous = -1
 count = 0
 for digit in digits:
@@ -27,4 +28,20 @@ for digit in digits:
 if int(digits[0]) == previous:
 	count += int(digits[0])
 
-print count
+print "Task 1:" + str(count)
+
+
+
+# Task 2
+count = 0
+digit = -1
+print len(digits)
+half_len = len(digits) / 2
+for i in range(0,half_len):
+	digit = int(digits[i])
+	if digit == int(digits[(i+half_len)]):
+		count += digit*2
+
+print "Task 2:" + str(count)
+
+
