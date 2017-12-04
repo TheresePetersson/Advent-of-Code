@@ -23,6 +23,7 @@
 # Data from square 1024 must be carried 31 steps.
 
 import math
+import numpy
 
 num = 325489
 
@@ -72,9 +73,61 @@ else:
 # 362  747  806--->   ...
 
 # Task 2
+def sum_all_neighbours(x_cord, j_cord, matrix):
+	value = 0
+	value += matrix[x_cord-1][y_cord]
+	value += matrix[x_cord][y_cord-1]
+	value += matrix[x_cord-1][y_cord-1]
+	value += matrix[x_cord+1][y_cord]
+	value += matrix[x_cord][y_cord+1]
+	value += matrix[x_cord+1][y_cord+1]
+	value += matrix[x_cord+1][y_cord-1]
+	value += matrix[x_cord-1][y_cord+1]
+	return value
 
+# Unnecessary to generate a to large matrix 
+sqrtNum /=2
+matrix = numpy.zeros((sqrtNum, sqrtNum))
+start_index = sqrtNum/2
+matrix[start_index][start_index] = 1
+value = 0
+y_cord = start_index 
+x_cord = start_index + 1
+# NORTH = 1, WEST = 2, SOUTH = 3, EAST = 4 
+direction =  4
+while value < num:
+	value = sum_all_neighbours(x_cord, y_cord, matrix)
+	matrix[x_cord][y_cord] = value
+	if direction == 1:
+		# Turn west if the element is free in matrix otherwise keep going north
+		if matrix[x_cord-1,y_cord] == 0:
+			x_cord -= 1
+			direction = 2
+		else:
+			y_cord -= 1
+	elif direction == 2:
+		# Turn south if the element is free in matrix otherwise keep going west
+		if matrix[x_cord,y_cord+1] == 0:
+			y_cord += 1
+			direction = 3
+		else:
+			x_cord -= 1
+	elif direction == 3:
+		# Turn east if the element is free in matrix otherwise keep going south
+		if matrix[x_cord+1,y_cord] == 0:
+			x_cord += 1
+			direction = 4
+		else:
+			y_cord += 1
+	else:
+		# Turn north if the element is free in matrix otherwise keep going east
+		if matrix[x_cord,y_cord-1] == 0:
+			y_cord -= 1
+			direction = 1
+		else:
+			x_cord += 1
 
-
+print "Task 2: " + str(value)
 
 
 
