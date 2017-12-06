@@ -75,6 +75,7 @@ print "Task 1: " + str(count)
 #
 # How many cycles are in the infinite loop that arises from the configuration 
 # in your puzzle input?
+
 first_index = int_lst.index(int_lst_temp)
 count_2 = count - first_index
 print "Task 2: " + str(count_2)
