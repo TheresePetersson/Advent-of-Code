@@ -29,6 +29,6 @@ for char in lst:
 		if garbage:
 			removed -= 1
 
-print "Task 1: " + str(score)
-print "Task 2: " + str(removed)
+print ("Task 1: " + str(score))
+print ("Task 2: " + str(removed))
 
