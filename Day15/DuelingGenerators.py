@@ -21,8 +21,8 @@ value_b = int(start_value_b)
 count = 0
 
 for i in range(0,40000000) : #40000000):
-	value_a = (value_a * factor_A) % divider
-	value_b = (value_b * factor_B) % divider
+	value_a = int((long(value_a) * long(factor_A)) % divider)
+	value_b = int((long(value_b) * long(factor_B)) % divider)
 
 	bit_a = bin(value_a)[-16:]
 	bit_b = bin(value_b)[-16:]
